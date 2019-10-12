@@ -7,6 +7,16 @@ app.config.update(
 )
 
 
+@app.route("/open", methods = ['POST'])
+def initialize
+
+
+
+
+
+
+
+
 @app.route("/Hello_World", methods = ['POST'])
 def test():
     return jsonify("Hello World!")
