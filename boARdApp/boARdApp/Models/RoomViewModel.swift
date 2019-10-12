@@ -10,7 +10,6 @@ import Foundation
 
 class RoomViewModel {
     
-    
     func createRoom() {
         
     }
