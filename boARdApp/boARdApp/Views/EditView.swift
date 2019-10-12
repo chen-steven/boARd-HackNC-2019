@@ -5,7 +5,6 @@
 //  Created by Steven Chen on 10/12/19.
 //  Copyright © 2019 backupMain Enterprises. All rights reserved.
 //
-
 import SwiftUI
 
 struct EditView: View {
@@ -16,6 +15,7 @@ struct EditView: View {
         
         TextView(text: $text).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
     }
+    
 }
 
 struct EditView_Previews: PreviewProvider {

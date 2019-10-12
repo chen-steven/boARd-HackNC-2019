@@ -5,7 +5,6 @@
 //  Created by Steven Chen on 10/12/19.
 //  Copyright © 2019 backupMain Enterprises. All rights reserved.
 //
-
 import SwiftUI
 
 struct ContentView: View {
@@ -41,10 +40,8 @@ struct ContentView: View {
     }
     
     func submit() {
-        var validRoom = true
-        if validRoom {
-            
-        }
+        let test = sendPOST(text: "aksdjfasjdklf", endpoint: "Hello_World")
+        print(test)
     }
     
 }

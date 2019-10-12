@@ -20,6 +20,9 @@
 		AD8E8DC5235267430030F7E9 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8E8DC4235267430030F7E9 /* BoardView.swift */; };
 		AD8E8DC7235267AE0030F7E9 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8E8DC6235267AE0030F7E9 /* Room.swift */; };
 		AD8E8DCA235267E20030F7E9 /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8E8DC9235267E20030F7E9 /* RoomViewModel.swift */; };
+		AD8E8DCF23526B2F0030F7E9 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8E8DCC23526B2F0030F7E9 /* Message.swift */; };
+		AD8E8DD023526B2F0030F7E9 /* ServerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8E8DCD23526B2F0030F7E9 /* ServerRequest.swift */; };
+		AD8E8DD123526B2F0030F7E9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8E8DCE23526B2F0030F7E9 /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,9 @@
 		AD8E8DC4235267430030F7E9 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		AD8E8DC6235267AE0030F7E9 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		AD8E8DC9235267E20030F7E9 /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
+		AD8E8DCC23526B2F0030F7E9 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		AD8E8DCD23526B2F0030F7E9 /* ServerRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRequest.swift; sourceTree = "<group>"; };
+		AD8E8DCE23526B2F0030F7E9 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,7 @@
 		AD8E8D8C2352671C0030F7E9 /* boARdApp */ = {
 			isa = PBXGroup;
 			children = (
+				AD8E8DCB23526B2F0030F7E9 /* ClientSideHTTP */,
 				AD8E8DC12352672C0030F7E9 /* Views */,
 				AD8E8DC0235267240030F7E9 /* Models */,
 				AD8E8D8D2352671C0030F7E9 /* AppDelegate.swift */,
@@ -165,6 +172,16 @@
 				AD8E8DC4235267430030F7E9 /* BoardView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		AD8E8DCB23526B2F0030F7E9 /* ClientSideHTTP */ = {
+			isa = PBXGroup;
+			children = (
+				AD8E8DCC23526B2F0030F7E9 /* Message.swift */,
+				AD8E8DCD23526B2F0030F7E9 /* ServerRequest.swift */,
+				AD8E8DCE23526B2F0030F7E9 /* Post.swift */,
+			);
+			path = ClientSideHTTP;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,8 +316,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD8E8D932352671C0030F7E9 /* boARdApp.xcdatamodeld in Sources */,
+				AD8E8DD123526B2F0030F7E9 /* Post.swift in Sources */,
 				AD8E8DC32352673A0030F7E9 /* EditView.swift in Sources */,
+				AD8E8DD023526B2F0030F7E9 /* ServerRequest.swift in Sources */,
 				AD8E8DC7235267AE0030F7E9 /* Room.swift in Sources */,
+				AD8E8DCF23526B2F0030F7E9 /* Message.swift in Sources */,
 				AD8E8D8E2352671C0030F7E9 /* AppDelegate.swift in Sources */,
 				AD8E8DC5235267430030F7E9 /* BoardView.swift in Sources */,
 				AD8E8D952352671C0030F7E9 /* ContentView.swift in Sources */,
