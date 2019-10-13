@@ -93,9 +93,7 @@ struct ContentView: View {
     }
     
     func create() {
-        
-        let test = sendPOST(text: "aksdjfasjdklf", endpoint: "Hello_World")
-        print(test)
+        room.connect()
     }
     func join() {
         print("joining a room")

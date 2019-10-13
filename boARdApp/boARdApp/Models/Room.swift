@@ -16,6 +16,9 @@ class Room: ObservableObject{
         self.roomNumber = "None"
     }
     
+    func setRoomNumber(num: String) {
+        roomNumber = num
+    }
     func setText(text:String) {
         self.text = text
         
@@ -26,6 +29,24 @@ class Room: ObservableObject{
     }
     
     func connect() {
-        
-    }
+        var dataString = "ERROR"
+          let url = URL(string: "https://board1331.herokuapp.com/ROOM")!
+          let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+              if let error = error {
+                  print("error: \(error)")
+              } else {
+                  if let response = response as? HTTPURLResponse {
+                      print("statusCode: \(response.statusCode)")
+                  }
+                  if let data = data{
+                      if let unwrapper = String(data: data, encoding: .utf8){
+
+                        dataString = unwrapper
+                        self.roomNumber = dataString
+                      }
+              }
+          }
+          }
+          task.resume()
+      }
 }
