@@ -8,7 +8,7 @@ app.config.update(
     SECRET_KEY = 'public static void main(String[] args)'
 )
 messages = []
-
+i = 0
 class Room(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=False, nullable=False)
@@ -33,14 +33,15 @@ def room():
         db.session.commit()
         return "complete"
     else:
-        messages.append([""])
+        messages.append("")
         adding = Room(username = '', text  = 'a')
         db.session.add(adding)
         db.session.commit()
         entry = adding.id
-        payload = { 'room' : str(1),
+        payload = { 'room' : str(i),
                 'text' : ""
                 }
+        i+=1
         return jsonify(payload)
 
     
@@ -55,11 +56,11 @@ def getText():
 @app.route("/PUSH", methods = ['POST'])
 def putText():
     data = request.get_json()
-    messages[int(data['id'])-1] = data['message']
+    messages[int(data['id'])] = data['message']
     group = Room.query.filter_by(id=(int(data['id']))).first()
     #group.text = data['message']
     db.session.commit()
-    print
+    
     return ""
 #
 #@app.route("/open", methods = ['POST'])
