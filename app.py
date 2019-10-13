@@ -40,7 +40,7 @@ def room():
         adding = Room(username = '', text  = '')
         db.session.add(adding)
         db.session.commit()
-        entry = adding.__repr__()[0]
+        entry = adding.__repr__()
         payload = { 'room' : str(entry[0]),
                 'text' : entry[1]
                 }
