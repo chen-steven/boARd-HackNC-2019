@@ -37,7 +37,7 @@ def room():
         db.session.commit()
         return "complete"
     else:
-        adding = Room(username = '', text  = '')
+        adding = Room(username = '', text  = 'a')
         db.session.add(adding)
         db.session.commit()
         entry = adding.id
@@ -52,7 +52,6 @@ def getText():
     iden = str(request.args.get('id'))
     print(iden)
     group = Room.query.filter_by(id = int(iden)).first()
-    
     #print(str(group))
     payload = {'room' : iden,
                'text' : group.text
@@ -68,7 +67,7 @@ def putText():
     group.text = data['message']
     #print(group.text)
     db.session.commit()
-    print(str(Room.query.filter_by(id=(int(data['id']))).first()))
+    print(str(Room.query.filter_by(id=(int(data['id']))).first().))
     #print(Room.query.filter_by(id=2).first())
     group = group.__repr__()
     payload = {'room' : str(group[0]),
