@@ -34,7 +34,7 @@ def room():
         return "complete"
     else:
         messages.append([""])
-        i = i + 1
+        i += 1
         adding = Room(username = '', text  = 'a')
         db.session.add(adding)
         db.session.commit()
