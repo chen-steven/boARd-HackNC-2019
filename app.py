@@ -7,7 +7,7 @@ db = SQLAlchemy(app)
 app.config.update(
     SECRET_KEY = 'public static void main(String[] args)'
 )
-db.create_all()
+
 
 class Room(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -17,7 +17,8 @@ class Room(db.Model):
     def __repr__(self):
         return (self.id, self.username, self.text)
 
-
+db.create_all()
+adding = Room(username = '', text  = '')
 #admin = Room(id = 1, username = "mare_quez", text = "fdafsdfadfa")
 #db.session.add(admin)
 #db.session.commit()
