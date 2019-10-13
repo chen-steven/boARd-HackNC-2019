@@ -8,6 +8,8 @@ app.config.update(
     SECRET_KEY = 'public static void main(String[] args)'
 )
 messages = []
+i = 0
+
 class Room(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=False, nullable=False)
