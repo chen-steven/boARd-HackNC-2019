@@ -50,7 +50,9 @@ def room():
 @app.route("/TEXT", methods = ['GET'])
 def getText():
     iden = request.args.get('id')
+    print(iden)
     group = Room.query.filter_by(id = int(iden)).first()
+    print(group)
     payload = {'room' : str(group[0]),
                'text' : group[1]
                }
