@@ -62,6 +62,7 @@ def putText():
     data = request.get_json()
     group = Room.query.filter_by(id=(int(data['id']))).first()
     group.text = data['message']
+    group = group.__repr__()
     payload = {'room' : str(group[0]),
         'text' : group[1]
             }
