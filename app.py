@@ -7,7 +7,7 @@ db = SQLAlchemy(app)
 app.config.update(
     SECRET_KEY = 'public static void main(String[] args)'
 )
-
+messages = []
 
 class Room(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -67,6 +67,7 @@ def putText():
     group.text = data['message']
     #print(group.text)
     db.session.commit()
+    print(str(Room.query.filter_by(id=(int(data['id']))).first()))
     #print(Room.query.filter_by(id=2).first())
     group = group.__repr__()
     payload = {'room' : str(group[0]),
