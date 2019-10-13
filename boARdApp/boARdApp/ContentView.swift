@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Text("Welcome to boARd")
-                .font(.title)
+                .font(.largeTitle)
                 .bold()
                 .padding(.top, 60)
             Image("logo").resizable()
@@ -21,7 +21,7 @@ struct ContentView: View {
                 .clipShape(Circle())
             Text("Please enter a room number:")
                 .bold()
-                .font(.subheadline)
+                .font(.headline)
             
             TextField("Room Number",text:$roomNumber)
                 .padding(EdgeInsets(top:8, leading: 10, bottom: 8, trailing: 10))
@@ -30,6 +30,7 @@ struct ContentView: View {
                 .padding()
             Button(action: submit) {
                 Text("Join Room")
+                    .foregroundColor(Color.white)
             }.padding().background(Color(red:99/255, green: 181/255, blue: 238/255)).cornerRadius(4)
             
                 
@@ -40,6 +41,7 @@ struct ContentView: View {
     }
     
     func submit() {
+        
         let test = sendPOST(text: "aksdjfasjdklf", endpoint: "Hello_World")
         print(test)
     }

@@ -8,30 +8,64 @@
 import SwiftUI
 
 struct EditView: View {
-    //@ObservedObject var room: Room
-    @State var text: String
-    @State var roomNumber: Int
+    @ObservedObject var room: Room
     var body: some View {
-        
-        TextView(text: $text).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+        VStack {
+            HStack {
+                Button(action: {
+                    print("button tapped")
+                }) {
+                    Text("Back")
+                        .multilineTextAlignment(.leading)
+                }
+                Spacer()
+                Text(String(room.text))
+                    .font(.largeTitle)
+                    .fontWeight(.semibold)
+                    .foregroundColor(Color.gray)
+                    .multilineTextAlignment(.center)
+                Spacer()
+            }.padding()
+            TextView(text: $room.text, room: room).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+        }
     }
+        
     
 }
 
 struct EditView_Previews: PreviewProvider {
     static var previews: some View {
-        EditView(text:"asjdfklasjdkfalsdfasdasdfasdff", roomNumber: 11)
+        EditView(room: Room(text:"test"))
     }
 }
 
 struct TextView: UIViewRepresentable {
     @Binding var text: String
+    var room: Room
 
     func makeUIView(context: Context) -> UITextView {
-        return UITextView()
+        let textView = UITextView()
+        textView.delegate = context.coordinator
+        return textView
     }
 
     func updateUIView(_ uiView: UITextView, context: Context) {
         uiView.text = text
     }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+}
+
+class Coordinator : NSObject, UITextViewDelegate {
+    var parent: TextView
+    init(_ uiTextView: TextView) {
+        self.parent = uiTextView
+    }
+    func textViewDidChange(_ textView: UITextView) {
+        print(textView.text ?? "empty")
+        parent.room.setText(text: textView.text)
+    }
+    
 }

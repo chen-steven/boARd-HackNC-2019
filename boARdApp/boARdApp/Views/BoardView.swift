@@ -21,6 +21,7 @@ struct ARViewContainer: UIViewRepresentable {
         // Add the box anchor to the scene
         //arView.scene.anchors.append(boxAnchor)
         
+        
         return arView
         
     }
@@ -31,7 +32,7 @@ struct ARViewContainer: UIViewRepresentable {
 struct BoardView: View {
     @ObservedObject var room: Room
     var body: some View {
-        Text(room.text)
+        ARViewContainer()
     }
 }
 
