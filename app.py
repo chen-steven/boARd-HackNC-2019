@@ -25,14 +25,14 @@ class Room(db.Model):
 @app.route('/ROOM', methods = ['GET'])
 def room():
     data = request.get_json()
-    room = data.get('room')
-    if room != None:
+    if  data != None:
+        room = data.get('room',None)
         person = Room.query(int(room))
         db.session.delete(person)
         db.session.commit()
         return "complete"
     else:
-        adding = Room(username = "")
+        adding = Room(username = data['username'])
         db.session.add(adding)
         db.session.commit()
         room_num = adding.__repr__()[0]
