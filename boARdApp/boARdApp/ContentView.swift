@@ -56,7 +56,7 @@ struct ContentView: View {
     }
     
     var body: some View {
-        VStack {
+        VStack (alignment: .center){
             
             Image("iconemptybg").resizable()
                 .frame(width: 320, height: 320)
@@ -65,13 +65,13 @@ struct ContentView: View {
                 .animation(.spring())
             if inputVisible {
                 VStack {
-                    Text("Please enter a room number:")
+                    Text("Enter a room number:")
                         .bold()
                         .font(.custom("Calibri", size:24))
-                    TextField("Room Number",text:$inputtedNumber)
-                        .padding(EdgeInsets(top:8, leading: 10, bottom: 5, trailing: 10))
+                    TextField("Ex: 1331",text:$inputtedNumber)
+                        .padding(EdgeInsets(top:3, leading: 40, bottom: 5, trailing: 40))
                         .background(Color.white)
-                    
+                        .multilineTextAlignment(.center)
                         .clipShape(RoundedRectangle(cornerRadius:8))
                         
                         .padding()

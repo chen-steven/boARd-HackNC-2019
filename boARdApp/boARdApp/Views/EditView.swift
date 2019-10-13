@@ -11,12 +11,12 @@ struct EditView: View {
     @ObservedObject var room: Room
     var body: some View {
         VStack {
-            HStack{
-                Spacer()
+            HStack(alignment: .center){
+                
                 Text(room.roomNumber)
                            .font(.largeTitle)
-                           .fontWeight(.semibold)
-                           .foregroundColor(Color.gray)
+                           .fontWeight(.bold)
+                    .foregroundColor(Color(red:77/255, green: 170/255, blue: 213/255))
                            .multilineTextAlignment(.center)
                 Spacer()
                 Button(action: {}) {
@@ -24,7 +24,7 @@ struct EditView: View {
                     Image(systemName:"square.and.arrow.up")
                         
                 }
-            }.padding().onTapGesture {
+            }.padding(EdgeInsets(top:8, leading: 25, bottom: 2, trailing: 25)).onTapGesture {
                 self.endEditing()
             }
            
