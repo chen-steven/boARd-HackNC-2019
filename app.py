@@ -47,7 +47,7 @@ def room():
 @app.route("/TEXT", methods = ['GET'])
 def getText():
     iden = request.args.get('id')
-    payload = {'room' : iden
+    payload = {'room' : iden,
                'text' : messages[int(iden)]
                }
     return jsonify(payload)
