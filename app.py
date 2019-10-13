@@ -55,7 +55,7 @@ def getText():
 @app.route("/PUSH", methods = ['POST'])
 def putText():
     data = request.get_json()
-    messages[data['id']] = data['message']
+    messages[int(data['id'])] = data['message']
     group = Room.query.filter_by(id=(int(data['id']))).first()
     group.text = data['message']
     db.session.commit()
