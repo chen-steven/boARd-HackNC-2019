@@ -11,21 +11,11 @@ struct EditView: View {
     @ObservedObject var room: Room
     var body: some View {
         VStack {
-            HStack {
-                Button(action: {
-                    print("button tapped")
-                }) {
-                    Text("Back")
-                        .multilineTextAlignment(.leading)
-                }
-                Spacer()
-                Text(String(room.text))
-                    .font(.largeTitle)
-                    .fontWeight(.semibold)
-                    .foregroundColor(Color.gray)
-                    .multilineTextAlignment(.center)
-                Spacer()
-            }.padding()
+            Text(String(room.roomNumber))
+            .font(.largeTitle)
+            .fontWeight(.semibold)
+            .foregroundColor(Color.gray)
+            .multilineTextAlignment(.center)
             TextView(text: $room.text, room: room).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         }
     }
@@ -46,7 +36,11 @@ struct TextView: UIViewRepresentable {
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
         textView.delegate = context.coordinator
+       
         return textView
+    }
+    func tapDone(sender: Any) {
+        
     }
 
     func updateUIView(_ uiView: UITextView, context: Context) {
@@ -57,15 +51,30 @@ struct TextView: UIViewRepresentable {
         Coordinator(self)
     }
 }
+extension UITextView {
+    func addDoneButton(title: String, target: Any, selector: Selector) {
+        let toolBar = UIToolbar(frame: CGRect(x: 0.0,
+                                              y: 0.0,
+                                              width: UIScreen.main.bounds.size.width,
+                                              height: 44.0))//1
+        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)//2
+        let barButton = UIBarButtonItem(title: title, style: .plain, target: target, action: selector)//3
+        toolBar.setItems([flexible, barButton], animated: false)//4
+        self.inputAccessoryView = toolBar//5
+    }
+    
+}
 
 class Coordinator : NSObject, UITextViewDelegate {
     var parent: TextView
     init(_ uiTextView: TextView) {
         self.parent = uiTextView
     }
+
     func textViewDidChange(_ textView: UITextView) {
         print(textView.text ?? "empty")
         parent.room.setText(text: textView.text)
     }
+    
     
 }

@@ -7,8 +7,46 @@
 //
 import SwiftUI
 
+struct AppContentView: View {
+    @State private var selection = 0
+    var room: Room = Room(text:"Join a room to collaborate\nmain backupMain")
+    var body: some View {
+        TabView(selection: $selection){
+            ContentView()
+                .font(.title)
+                .tabItem {
+                    VStack{
+                        Image(systemName:"person")
+                        Text("Welcome")
+                    }
+                }
+                .tag(0)
+            EditView(room: room)
+                .font(.title)
+                .tabItem {
+                    VStack{
+                        Image(systemName:"pencil.tip")
+                        Text("Edit")
+                    }
+                }
+                .tag(1)
+            BoardView(room: room)
+                .font(.title)
+                .tabItem {
+                    VStack{
+                        Image(systemName:"arkit")
+                        Text("boARd")
+                    }
+            }.tag(2)
+            
+            
+        }.edgesIgnoringSafeArea(.top)
+    }
+}
 struct ContentView: View {
     @State var roomNumber: String = ""
+    @State var createRoom: Bool?
+
     //@EnvironmentObject var roomViewModel:RoomViewModel
     var body: some View {
         VStack {
@@ -24,26 +62,44 @@ struct ContentView: View {
                 .font(.headline)
             
             TextField("Room Number",text:$roomNumber)
-                .padding(EdgeInsets(top:8, leading: 10, bottom: 8, trailing: 10))
+                .padding(EdgeInsets(top:8, leading: 10, bottom: 5, trailing: 10))
                 .background(Color.init(red:180/255, green: 180/255, blue: 180/255))
                 .clipShape(RoundedRectangle(cornerRadius:8))
                 .padding()
-            Button(action: submit) {
-                Text("Join Room")
-                    .foregroundColor(Color.white)
-            }.padding().background(Color(red:99/255, green: 181/255, blue: 238/255)).cornerRadius(4)
+                
+            Divider()
+                .padding(.bottom)
+            HStack {
+                
+                Button(action: create) {
+                    Text("Create")
+                        .foregroundColor(Color.white)
+                        .lineLimit(4)
+                }.padding().background(Color(red:122/255, green: 240/255, blue: 146/255)).cornerRadius(4)
+                
+                Button(action: join) {
+                    Text("Join")
+                        .foregroundColor(Color.white)
+                }.padding().background(Color(red:122/255, green: 240/255, blue: 146/255)).cornerRadius(4)
+                
+                
+            }
+            
             
                 
             Spacer()
             
         }
-        .background(SwiftUI.Color.green.edgesIgnoringSafeArea(.all))
+        .background(SwiftUI.Color(red:99/255, green:185/255, blue: 242/255).edgesIgnoringSafeArea(.all))
     }
     
-    func submit() {
+    func create() {
         
         let test = sendPOST(text: "aksdjfasjdklf", endpoint: "Hello_World")
         print(test)
+    }
+    func join() {
+        print("joining a room")
     }
     
 }

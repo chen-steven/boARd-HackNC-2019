@@ -10,6 +10,7 @@ import Foundation
 class Room: ObservableObject{
     var text:String
     var roomNumber: Int
+    
     init(text:String) {
         self.text = text
         self.roomNumber = 1331
