@@ -49,8 +49,8 @@ def room():
     
 @app.route("/TEXT", methods = ['GET'])
 def getText():
-    data = request.get_json()
-    room = Room.query(int(data['room']))
+    iden = request.args.get('id')
+    room = Room.query(iden)
     payload = {'room' : str(room[0]),
                'text' : room[1]
                }
