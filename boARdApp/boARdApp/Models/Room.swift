@@ -16,6 +16,7 @@ class Room: ObservableObject{
     }
     func setText(text:String) {
         self.text = text
+        
         //upload to database
     }
     func getText() -> String {

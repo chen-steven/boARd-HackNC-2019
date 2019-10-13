@@ -9,5 +9,6 @@ app.config.update(
 
 @app.route("/Hello_World", methods = ['POST'])
 def test():
-    return jsonify("Hello World!")
+    payload = {text: "Hello World"}
+    return jsonify(payload)
 

@@ -19,14 +19,14 @@ struct EditView: View {
                         .multilineTextAlignment(.leading)
                 }
                 Spacer()
-                Text(String(room.roomNumber))
+                Text(String(room.text))
                     .font(.largeTitle)
                     .fontWeight(.semibold)
                     .foregroundColor(Color.gray)
                     .multilineTextAlignment(.center)
                 Spacer()
             }.padding()
-            TextView(text: $room.text).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+            TextView(text: $room.text, room: room).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         }
     }
         
@@ -41,6 +41,7 @@ struct EditView_Previews: PreviewProvider {
 
 struct TextView: UIViewRepresentable {
     @Binding var text: String
+    var room: Room
 
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
@@ -64,6 +65,7 @@ class Coordinator : NSObject, UITextViewDelegate {
     }
     func textViewDidChange(_ textView: UITextView) {
         print(textView.text ?? "empty")
+        parent.room.setText(text: textView.text)
     }
     
 }
