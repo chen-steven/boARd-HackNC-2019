@@ -50,8 +50,10 @@ def room():
 @app.route("/TEXT", methods = ['GET'])
 def getText():
     iden = request.args.get('id')
+    print(iden)
     group = Room.query.filter_by(id = int(iden)).first()
     group = group.__repr__()
+    print(group[2])
     payload = {'room' : str(group[0]),
                'text' : group[1]
                }
@@ -61,7 +63,11 @@ def getText():
 def putText():
     data = request.get_json()
     group = Room.query.filter_by(id=(int(data['id']))).first()
+    print(data['message'])
     group.text = data['message']
+    db.session.commit()
+    print(group.text)
+    group = group.__repr__()
     payload = {'room' : str(group[0]),
         'text' : group[1]
             }
