@@ -41,7 +41,6 @@ def room():
         payload = { 'room' : len(messages)-1,
                 'text' : ""
                 }
-        i+=1
         return jsonify(payload)
 
     
