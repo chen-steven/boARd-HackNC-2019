@@ -7,9 +7,8 @@
 //
 
 import Foundation
-func sendPOST(text: String, endpoint: String) -> String {
-    let message = Message(message: text, id: 0)
+func sendPOST(text: String, endpoint: String, id : String) -> Void{
+    let message = Message(message: text, id: id)
     let postRequest = ServerRequest(endpoint: endpoint)
-    let ret = POST(message: message, serverReq: postRequest)
-    return ret
+    POST(message: message, serverReq: postRequest)
 }

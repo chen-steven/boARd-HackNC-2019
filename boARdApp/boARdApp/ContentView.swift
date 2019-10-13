@@ -41,7 +41,7 @@ struct AppContentView: View {
             }.tag(2)
             
             
-        }.edgesIgnoringSafeArea(.top)
+        }.edgesIgnoringSafeArea(.top).opacity(100.0)
     }
 }
 struct ContentView: View {
@@ -49,20 +49,18 @@ struct ContentView: View {
     @ObservedObject var room: Room
     var body: some View {
         VStack {
-            Text("Welcome to boARd")
-                .font(.largeTitle)
-                .bold()
-                .padding(.top, 60)
-            Image("logo").resizable()
-                .frame(width: 256.0, height: 256.0)
+            
+            Image("iconemptybg").resizable()
+                .frame(width: 320, height: 320)
                 .clipShape(Circle())
+                .padding()
             Text("Please enter a room number:")
                 .bold()
-                .font(.headline)
+                .font(.custom("Museo700-Regular.otf", size:18))
             
             TextField("Room Number",text:$inputtedNumber)
                 .padding(EdgeInsets(top:8, leading: 10, bottom: 5, trailing: 10))
-                .background(Color.init(red:180/255, green: 180/255, blue: 180/255))
+                .background(Color.white)
                 .clipShape(RoundedRectangle(cornerRadius:8))
                 .padding()
                 
@@ -71,15 +69,21 @@ struct ContentView: View {
             HStack {
                 
                 Button(action: create) {
-                    Text("Create")
-                        .foregroundColor(Color.white)
-                        .lineLimit(4)
-                }.padding().background(Color(red:122/255, green: 240/255, blue: 146/255)).cornerRadius(4)
+                    HStack{
+                        Image(systemName:"plus.circle")
+                        Text("Create")
+                            .foregroundColor(Color.white)
+                            .lineLimit(4)
+                    }
+                }.padding().background(Color.black).cornerRadius(20)
                 
                 Button(action: join) {
-                    Text("Join")
-                        .foregroundColor(Color.white)
-                }.padding().background(Color(red:122/255, green: 240/255, blue: 146/255)).cornerRadius(4)
+                    HStack{
+                        Image(systemName:"person.badge.plus")
+                        Text("Join")
+                            .foregroundColor(Color.white)
+                    }
+                }.padding().background(Color.black).cornerRadius(20)
                 
                 
             }
@@ -89,14 +93,15 @@ struct ContentView: View {
             Spacer()
             
         }
-        .background(SwiftUI.Color(red:99/255, green:185/255, blue: 242/255).edgesIgnoringSafeArea(.all))
+        .background(Image("mainbackground")).edgesIgnoringSafeArea(.top)
+        //.background(SwiftUI.Color(red:99/255, green:185/255, blue: 242/255).edgesIgnoringSafeArea(.all))
     }
     
     func create() {
         room.connect()
     }
     func join() {
-        
+        room.connectWithRoom(room: inputtedNumber)
     }
     
 }

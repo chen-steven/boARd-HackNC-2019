@@ -9,10 +9,10 @@
 import Foundation
 
 final class Message: Codable {
-    var id:Int
+    var id : String
     var message:String
     
-    init(message: String, id: Int){
+    init(message: String, id: String){
         self.message = message
         self.id = id
     }
