@@ -61,9 +61,9 @@ def getText():
 def putText():
     data = request.get_json()
     group = Room.query.filter_by(id=(int(data['id']))).first()
-    group.text = data['text']
+    group.text = data['message']
     payload = {'room' : str(group[0]),
-        'text' : room[1]
+        'text' : group[1]
             }
     return jsonify(payload)
 #
