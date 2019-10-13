@@ -7,6 +7,7 @@ db = SQLAlchemy(app)
 app.config.update(
     SECRET_KEY = 'public static void main(String[] args)'
 )
+db.create_all()
 
 class Room(db.Model):
     id = db.Column(db.Integer, primary_key=True)
