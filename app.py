@@ -31,8 +31,8 @@ db.session.commit()
 def room():
     data = request.get_json()
     if  data != None:
-        room = data.get('room',None)
-        person = Room.query.filter_by(id = int(room)).first()
+        group = data.get('room',None)
+        person = Room.query.filter_by(id = int(group)).first()
         db.session.delete(person)
         db.session.commit()
         return "complete"
@@ -50,18 +50,18 @@ def room():
 @app.route("/TEXT", methods = ['GET'])
 def getText():
     iden = request.args.get('id')
-    room = Room.query.filter_by(id = int(iden)).first()
-    payload = {'room' : str(room[0]),
-               'text' : room[1]
+    group = Room.query.filter_by(id = int(iden)).first()
+    payload = {'room' : str(group[0]),
+               'text' : group[1]
                }
     return jsonify(payload)
 
 @app.route("/PUSH", methods = ['POST'])
 def putText():
     data = request.get_json()
-    room = Room.query.filter_by(id=(int(data['room']))).first()
-    room.text = data['text']
-    payload = {'room' : str(room[0]),
+    group = Room.query.filter_by(id=(int(data['room']))).first()
+    group.text = data['text']
+    payload = {'room' : str(group[0]),
         'text' : room[1]
             }
     return jsonify(payload)
