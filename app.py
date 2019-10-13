@@ -32,7 +32,7 @@ def room():
         db.session.commit()
         return "complete"
     else:
-        adding = Room(username = data['username'])
+        adding = Room(username = '')
         db.session.add(adding)
         db.session.commit()
         room_num = adding.__repr__()[0]
