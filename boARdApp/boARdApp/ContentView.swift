@@ -96,7 +96,7 @@ struct ContentView: View {
         room.connect()
     }
     func join() {
-        print("joining a room")
+        
     }
     
 }

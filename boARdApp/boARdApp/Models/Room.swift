@@ -27,7 +27,10 @@ class Room: ObservableObject{
     func getText() -> String {
         return self.text
     }
-    
+    func connectWithRoom(room : String){
+        self.roomNumber = room
+        //assumes user puts right room number
+    }
     func connect() {
         var dataString = "ERROR"
           let url = URL(string: "https://board1331.herokuapp.com/ROOM")!
