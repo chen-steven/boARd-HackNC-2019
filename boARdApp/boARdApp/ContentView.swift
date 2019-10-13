@@ -9,7 +9,8 @@ import SwiftUI
 
 struct AppContentView: View {
     @State private var selection = 0
-    var room: Room = Room(text:"Join a room to collaborate")
+    var room: Room
+    //var room: Room = Room(text:"Join a room to collaborate")
     var body: some View {
         TabView(selection: $selection){
             ContentView(room: room)
@@ -104,6 +105,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(room: Room(text:""))
     }
 }

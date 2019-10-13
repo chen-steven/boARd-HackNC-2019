@@ -15,9 +15,7 @@ class Room: ObservableObject{
         self.text = text
         self.roomNumber = "None"
     }
-    func setRoomNumber(num: String) {
-        roomNumber = num
-    }
+    
     func setText(text:String) {
         self.text = text
         
@@ -25,5 +23,9 @@ class Room: ObservableObject{
     }
     func getText() -> String {
         return self.text
+    }
+    
+    func connect() {
+        
     }
 }

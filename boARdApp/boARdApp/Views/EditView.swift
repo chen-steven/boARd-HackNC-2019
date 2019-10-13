@@ -68,9 +68,7 @@ class Coordinator : NSObject, UITextViewDelegate {
         self.parent = uiTextView
     }
     
-    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-        if
-    }
+    
     func textViewDidChangeSelection(_ textView: UITextView) {
         textView.resignFirstResponder()
     }
