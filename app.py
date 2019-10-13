@@ -8,7 +8,6 @@ app.config.update(
     SECRET_KEY = 'public static void main(String[] args)'
 )
 messages = []
-i = 0
 
 class Room(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -35,12 +34,11 @@ def room():
         return "complete"
     else:
         messages.append([""])
-        i += 1
         adding = Room(username = '', text  = 'a')
         db.session.add(adding)
         db.session.commit()
         entry = adding.id
-        payload = { 'room' : str(i-1),
+        payload = { 'room' : str(1),
                 'text' : ""
                 }
         return jsonify(payload)
