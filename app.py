@@ -38,7 +38,7 @@ def room():
         db.session.add(adding)
         db.session.commit()
         entry = adding.id
-        payload = { 'room' : str(i),
+        payload = { 'room' : len(messages)-1,
                 'text' : ""
                 }
         i+=1
