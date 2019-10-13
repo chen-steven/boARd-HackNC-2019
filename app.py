@@ -7,25 +7,21 @@ db = SQLAlchemy(app)
 app.config.update(
     SECRET_KEY = 'public static void main(String[] args)'
 )
-
-
+messages = []
+i = 0
 class Room(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=False, nullable=False)
     text = db.Column(db.String(500), unique=False, nullable=False)
 
     def __repr__(self):
-        return (self.id, self.username, self.text)
+        return "{}".format(self.text)
 
 db.create_all()
 adding = Room(username = '', text  = '')
 db.session.add(adding)
 db.session.commit()
 
-#admin = Room(id = 1, username = "mare_quez", text = "fdafsdfadfa")
-#db.session.add(admin)
-#db.session.commit()
-#Room.query.all()
 
 @app.route('/ROOM', methods = ['GET'])
 def room():
@@ -37,39 +33,34 @@ def room():
         db.session.commit()
         return "complete"
     else:
-        adding = Room(username = '', text  = '')
+        messages.append("")
+        adding = Room(username = '', text  = 'a')
         db.session.add(adding)
         db.session.commit()
-        entry = adding.__repr__()
-        payload = { 'room' : str(entry[0]),
-                'text' : entry[1]
+        entry = adding.id
+        payload = { 'room' : str(len(messages)-1),
+                'text' : ""
                 }
         return jsonify(payload)
 
     
 @app.route("/TEXT", methods = ['GET'])
 def getText():
-    iden = str(request.args.get('id'))
-    print(iden)
-    group = Room.query.filter_by(id = int(iden)).first()
-    group = group.__repr__()
-    payload = {'room' : str(group[0]),
-               'text' : group[1]
+    iden = request.args.get('id')
+    payload = {'room' : iden,
+               'text' : messages[int(iden)]
                }
-    print(payload['text'])
     return jsonify(payload)
 
 @app.route("/PUSH", methods = ['POST'])
 def putText():
     data = request.get_json()
+    messages[int(data['id'])] = data['message']
     group = Room.query.filter_by(id=(int(data['id']))).first()
-    group.text = data['message']
+    #group.text = data['message']
     db.session.commit()
-    group = group.__repr__()
-    payload = {'room' : str(group[0]),
-        'text' : group[1]
-            }
-    return jsonify(payload)
+    
+    return ""
 #
 #@app.route("/open", methods = ['POST'])
 #def initialize
