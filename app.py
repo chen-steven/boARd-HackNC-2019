@@ -32,7 +32,7 @@ def room():
     data = request.get_json()
     if  data != None:
         room = data.get('room',None)
-        person = Room.query.filter_by(id = int(room))
+        person = Room.query.filter_by(id = int(room)).first()
         db.session.delete(person)
         db.session.commit()
         return "complete"
@@ -50,7 +50,7 @@ def room():
 @app.route("/TEXT", methods = ['GET'])
 def getText():
     iden = request.args.get('id')
-    room = Room.query.filter_by(id = int(iden))
+    room = Room.query.filter_by(id = int(iden)).first()
     payload = {'room' : str(room[0]),
                'text' : room[1]
                }
@@ -59,7 +59,7 @@ def getText():
 @app.route("/PUSH", methods = ['POST'])
 def putText():
     data = request.get_json()
-    room = Room.query.filter_by(id=(int(data['room']))
+    room = Room.query.filter_by(id=(int(data['room']))).first()
     room.text = data['text']
     payload = {'room' : str(room[0]),
         'text' : room[1]
