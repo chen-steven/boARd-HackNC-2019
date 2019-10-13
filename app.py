@@ -47,9 +47,24 @@ def room():
         return jsonify(payload)
 
     
+@app.route("/TEXT", methods = ['GET'])
+def getText():
+    data = request.get_json()
+    room = Room.query(int(data['room']))
+    payload = {'room' : str(room[0]),
+               'text' : room[1]
+               }
+    return jsonify(payload)
 
-
-
+@app.route("/PUSH", methods = ['POST'])
+def putText():
+    data = request.get_json()
+    room = Room.query(int(data['room']))
+    room.text = data['text']
+    payload = {'room' : str(room[0]),
+        'text' : room[1]
+            }
+    return jsonify(payload)
 #
 #@app.route("/open", methods = ['POST'])
 #def initialize
