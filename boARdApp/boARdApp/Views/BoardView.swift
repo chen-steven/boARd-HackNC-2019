@@ -35,11 +35,12 @@ struct ARViewContainer: UIViewRepresentable {
         
         let textMaterial = SimpleMaterial(color: UIColor.black, roughness: 0.0, isMetallic: false)
         let textModel = ModelEntity(mesh: textMesh, materials: [textMaterial])
+        
         textModel.scale = SIMD3<Float>(0.1, 0.1, 0.1)
         //textModel.position = SIMD3<Float>(0.0, 0.0, -0.2)
         anchor.addChild(textModel)
         
-        
+        print("test")
         
         
         return arView
@@ -47,6 +48,7 @@ struct ARViewContainer: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: ARView, context: Context) {
+        print("test1")
        /* let textMesh = MeshResource.generateText(
         text,
         extrusionDepth: 0.1,

@@ -9,10 +9,10 @@ import SwiftUI
 
 struct AppContentView: View {
     @State private var selection = 0
-    var room: Room = Room(text:"Join a room to collaborate\nmain backupMain")
+    var room: Room = Room(text:"Join a room to collaborate")
     var body: some View {
         TabView(selection: $selection){
-            ContentView()
+            ContentView(room: room)
                 .font(.title)
                 .tabItem {
                     VStack{
@@ -44,10 +44,8 @@ struct AppContentView: View {
     }
 }
 struct ContentView: View {
-    @State var roomNumber: String = ""
-    @State var createRoom: Bool?
-
-    //@EnvironmentObject var roomViewModel:RoomViewModel
+    @State var inputtedNumber: String = ""
+    @ObservedObject var room: Room
     var body: some View {
         VStack {
             Text("Welcome to boARd")
@@ -61,7 +59,7 @@ struct ContentView: View {
                 .bold()
                 .font(.headline)
             
-            TextField("Room Number",text:$roomNumber)
+            TextField("Room Number",text:$inputtedNumber)
                 .padding(EdgeInsets(top:8, leading: 10, bottom: 5, trailing: 10))
                 .background(Color.init(red:180/255, green: 180/255, blue: 180/255))
                 .clipShape(RoundedRectangle(cornerRadius:8))

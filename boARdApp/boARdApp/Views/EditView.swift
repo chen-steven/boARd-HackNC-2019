@@ -11,7 +11,7 @@ struct EditView: View {
     @ObservedObject var room: Room
     var body: some View {
         VStack {
-            Text(String(room.roomNumber))
+            Text(room.roomNumber)
             .font(.largeTitle)
             .fontWeight(.semibold)
             .foregroundColor(Color.gray)
@@ -38,9 +38,6 @@ struct TextView: UIViewRepresentable {
         textView.delegate = context.coordinator
        
         return textView
-    }
-    func tapDone(sender: Any) {
-        
     }
 
     func updateUIView(_ uiView: UITextView, context: Context) {
@@ -70,7 +67,13 @@ class Coordinator : NSObject, UITextViewDelegate {
     init(_ uiTextView: TextView) {
         self.parent = uiTextView
     }
-
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        if
+    }
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        textView.resignFirstResponder()
+    }
     func textViewDidChange(_ textView: UITextView) {
         print(textView.text ?? "empty")
         parent.room.setText(text: textView.text)

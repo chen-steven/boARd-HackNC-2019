@@ -8,12 +8,15 @@
 import Foundation
 
 class Room: ObservableObject{
-    var text:String
-    var roomNumber: Int
+    @Published var text:String
+    @Published var roomNumber: String
     
     init(text:String) {
         self.text = text
-        self.roomNumber = 1331
+        self.roomNumber = "None"
+    }
+    func setRoomNumber(num: String) {
+        roomNumber = num
     }
     func setText(text:String) {
         self.text = text
