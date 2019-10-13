@@ -72,14 +72,23 @@ class Room: ObservableObject{
                       print("statusCode: \(response.statusCode)")
                   }
                   if let data = data{
-                      if let unwrapper = String(data: data, encoding: .utf8){
-
-                        dataString = unwrapper
-                        self.roomNumber = dataString
-                      }
+                    do {
+                            
+                        let session = try JSONDecoder().decode(Session.self, from: data)
+                        self.roomNumber = session.room
+                        self.text = session.text
+                    } catch{
+                    }
               }
           }
           }
           task.resume()
       }
+    
+    
+}
+
+struct Session: Codable {
+    var room: String
+    var text: String
 }

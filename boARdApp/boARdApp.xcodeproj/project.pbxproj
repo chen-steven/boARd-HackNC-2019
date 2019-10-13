@@ -24,7 +24,6 @@
 		AD8E8DD023526B2F0030F7E9 /* ServerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8E8DCD23526B2F0030F7E9 /* ServerRequest.swift */; };
 		AD8E8DD123526B2F0030F7E9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8E8DCE23526B2F0030F7E9 /* Post.swift */; };
 		AD8E8E1423531C5D0030F7E9 /* icon in Resources */ = {isa = PBXBuildFile; fileRef = AD8E8E1323531C5D0030F7E9 /* icon */; };
-		AD8E8E1623532BAB0030F7E9 /* Museo700-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AD8E8E1523532BAB0030F7E9 /* Museo700-Regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +67,6 @@
 		AD8E8DCD23526B2F0030F7E9 /* ServerRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRequest.swift; sourceTree = "<group>"; };
 		AD8E8DCE23526B2F0030F7E9 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		AD8E8E1323531C5D0030F7E9 /* icon */ = {isa = PBXFileReference; lastKnownFileType = file; name = icon; path = ../../../../../Downloads/icon; sourceTree = "<group>"; };
-		AD8E8E1523532BAB0030F7E9 /* Museo700-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Museo700-Regular.otf"; path = "../../../../../Library/Fonts/Museo700-Regular.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +126,6 @@
 				AD8E8D962352671E0030F7E9 /* Assets.xcassets */,
 				AD8E8D9B2352671E0030F7E9 /* LaunchScreen.storyboard */,
 				AD8E8D9E2352671E0030F7E9 /* Info.plist */,
-				AD8E8E1523532BAB0030F7E9 /* Museo700-Regular.otf */,
 				AD8E8E1323531C5D0030F7E9 /* icon */,
 				AD8E8D912352671C0030F7E9 /* boARdApp.xcdatamodeld */,
 				AD8E8D982352671E0030F7E9 /* Preview Content */,
@@ -296,7 +293,6 @@
 			files = (
 				AD8E8D9D2352671E0030F7E9 /* LaunchScreen.storyboard in Resources */,
 				AD8E8E1423531C5D0030F7E9 /* icon in Resources */,
-				AD8E8E1623532BAB0030F7E9 /* Museo700-Regular.otf in Resources */,
 				AD8E8D9A2352671E0030F7E9 /* Preview Assets.xcassets in Resources */,
 				AD8E8D972352671E0030F7E9 /* Assets.xcassets in Resources */,
 			);

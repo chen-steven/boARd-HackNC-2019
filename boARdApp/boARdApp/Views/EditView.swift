@@ -11,11 +11,21 @@ struct EditView: View {
     @ObservedObject var room: Room
     var body: some View {
         VStack {
-            Text(room.roomNumber)
-            .font(.largeTitle)
-            .fontWeight(.semibold)
-            .foregroundColor(Color.gray)
-            .multilineTextAlignment(.center)
+            HStack{
+                Spacer()
+                Text(room.roomNumber)
+                           .font(.largeTitle)
+                           .fontWeight(.semibold)
+                           .foregroundColor(Color.gray)
+                           .multilineTextAlignment(.center)
+                Spacer()
+                Button(action: {}) {
+                    
+                    Image(systemName:"square.and.arrow.up")
+                        
+                }
+            }.padding()
+           
             TextView(text: $room.text, room: room).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         }
     }
