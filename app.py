@@ -65,6 +65,7 @@ def putText():
     group = Room.query.filter_by(id=(int(data['id']))).first()
     print(data['message'])
     group.text = data['message']
+    db.session.commit()
     print(group.text)
     group = group.__repr__()
     payload = {'room' : str(group[0]),
