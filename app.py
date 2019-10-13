@@ -59,7 +59,7 @@ def getText():
 @app.route("/PUSH", methods = ['POST'])
 def putText():
     data = request.get_json()
-    group = Room.query.filter_by(id=(int(data['room']))).first()
+    group = Room.query.filter_by(id=(int(data['id']))).first()
     group.text = data['text']
     payload = {'room' : str(group[0]),
         'text' : room[1]
