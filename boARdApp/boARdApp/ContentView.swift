@@ -30,7 +30,7 @@ struct AppContentView: View {
                         Text("Edit")
                     }
                 }
-                .tag(1)
+            .tag(1)
             BoardView(room: room)
                 .font(.title)
                 .tabItem {
@@ -62,7 +62,7 @@ struct ContentView: View {
                 .frame(width: 320, height: 320)
                 .clipShape(Circle())
                 .padding()
-            
+                .animation(.spring())
             if inputVisible {
                 VStack {
                     Text("Please enter a room number:")
@@ -71,14 +71,14 @@ struct ContentView: View {
                     TextField("Room Number",text:$inputtedNumber)
                         .padding(EdgeInsets(top:8, leading: 10, bottom: 5, trailing: 10))
                         .background(Color.white)
+                    
                         .clipShape(RoundedRectangle(cornerRadius:8))
                         
                         .padding()
                 }.animation(animation)
             }
-            Divider()
-                .padding(.bottom)
-            HStack {
+           
+            HStack(alignment: .center) {
                 
                 Button(action: create) {
                     HStack{
@@ -88,7 +88,8 @@ struct ContentView: View {
                             .lineLimit(4)
                     }
                 }.padding().background(Color.black).cornerRadius(20)
-                
+                    .shadow(radius:30)
+        
                 Button(action: join) {
                     HStack{
                         Image(systemName:"person.badge.plus")
@@ -96,7 +97,8 @@ struct ContentView: View {
                             .foregroundColor(Color.white)
                     }
                 }.padding().background(Color.black).cornerRadius(20)
-                
+                    .shadow(radius:30)
+            
                 
             }
             

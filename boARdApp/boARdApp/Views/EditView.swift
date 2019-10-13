@@ -24,13 +24,25 @@ struct EditView: View {
                     Image(systemName:"square.and.arrow.up")
                         
                 }
-            }.padding()
+            }.padding().onTapGesture {
+                self.endEditing()
+            }
            
             TextView(text: $room.text, room: room).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         }
     }
+    
+    
+    func endEditing() {
+        UIApplication.shared.endEditing()
+    }
         
     
+}
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
 }
 
 struct EditView_Previews: PreviewProvider {
@@ -46,7 +58,6 @@ struct TextView: UIViewRepresentable {
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
         textView.delegate = context.coordinator
-       
         return textView
     }
 
@@ -78,10 +89,6 @@ class Coordinator : NSObject, UITextViewDelegate {
         self.parent = uiTextView
     }
     
-    
-    func textViewDidChangeSelection(_ textView: UITextView) {
-        textView.resignFirstResponder()
-    }
     func textViewDidChange(_ textView: UITextView) {
         print(textView.text ?? "empty")
         parent.room.setText(text: textView.text)

@@ -13,7 +13,7 @@ class Room: ObservableObject{
     
     init(text:String) {
         self.text = text
-        self.roomNumber = "None"
+        self.roomNumber = "Notes"
     }
     
     func setRoomNumber(num: String) {
@@ -31,6 +31,7 @@ class Room: ObservableObject{
             //let message : Message = Message(message : "", id : self.roomNumber)
     
             let url = URL(string: "https://board1331.herokuapp.com/TEXT?id=" + self.roomNumber)!
+            print(self.roomNumber)
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "GET"
             //urlRequest.addValue("application/json",forHTTPHeaderField: "Content-Type")
