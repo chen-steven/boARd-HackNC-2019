@@ -24,8 +24,9 @@ class Room: ObservableObject{
         sendPOST(text: self.text, endpoint : "PUSH", id: self.roomNumber)
     }
     func getText() -> Void{
-        print("jaalksjdflkalsdfjasdf")
+        
         do {
+            
             var text = "ERROR"
             //let message : Message = Message(message : "", id : self.roomNumber)
     
@@ -41,25 +42,36 @@ class Room: ObservableObject{
                 jsonData = data else {
                     return
             }
+                
             do {
-                    
-                    text = try JSONDecoder().decode(Message.self, from: jsonData).message
-                    self.text = text
-                    print(self.text)
+                self.parse(json: jsonData)
             } catch{
             }
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            
                 task.resume()
-                self.getText()
             }
-        } catch {
+           catch {
         }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {self.getText()}
+        
+        
     }
     func connectWithRoom(room : String){
         self.roomNumber = room
         self.getText()
         //assumes user puts right room number
+    }
+    func parse(json: Data) {
+        let decoder = JSONDecoder()
+        if let jsonPetitions = try?
+            decoder.decode(Session.self, from: json) {
+            DispatchQueue.main.async() {
+                self.text = jsonPetitions.text
+                self.roomNumber = jsonPetitions.room
+            }
+        }
+        
     }
     func connect() {
         var dataString = "ERROR"
@@ -74,9 +86,7 @@ class Room: ObservableObject{
                   if let data = data{
                     do {
                             
-                        let session = try JSONDecoder().decode(Session.self, from: data)
-                        self.roomNumber = session.room
-                        self.text = session.text
+                        self.parse(json:data)
                     } catch{
                     }
               }

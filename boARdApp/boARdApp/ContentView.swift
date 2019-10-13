@@ -46,7 +46,15 @@ struct AppContentView: View {
 }
 struct ContentView: View {
     @State var inputtedNumber: String = ""
+    @State var inputVisible: Bool = false
     @ObservedObject var room: Room
+    
+    var animation: Animation {
+        Animation.spring(dampingFraction: 0.5)
+            .speed(0.5)
+            .delay(0.15)
+    }
+    
     var body: some View {
         VStack {
             
@@ -54,16 +62,20 @@ struct ContentView: View {
                 .frame(width: 320, height: 320)
                 .clipShape(Circle())
                 .padding()
-            Text("Please enter a room number:")
-                .bold()
-                .font(.custom("Museo700-Regular.otf", size:18))
             
-            TextField("Room Number",text:$inputtedNumber)
-                .padding(EdgeInsets(top:8, leading: 10, bottom: 5, trailing: 10))
-                .background(Color.white)
-                .clipShape(RoundedRectangle(cornerRadius:8))
-                .padding()
-                
+            if inputVisible {
+                VStack {
+                    Text("Please enter a room number:")
+                        .bold()
+                        .font(.custom("Calibri", size:24))
+                    TextField("Room Number",text:$inputtedNumber)
+                        .padding(EdgeInsets(top:8, leading: 10, bottom: 5, trailing: 10))
+                        .background(Color.white)
+                        .clipShape(RoundedRectangle(cornerRadius:8))
+                        
+                        .padding()
+                }.animation(animation)
+            }
             Divider()
                 .padding(.bottom)
             HStack {
@@ -101,7 +113,11 @@ struct ContentView: View {
         room.connect()
     }
     func join() {
-        room.connectWithRoom(room: inputtedNumber)
+        if inputVisible {
+            room.connectWithRoom(room: inputtedNumber)
+        } else {
+            inputVisible = true
+        }
     }
     
 }
