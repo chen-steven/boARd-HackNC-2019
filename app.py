@@ -52,6 +52,7 @@ def getText():
     iden = request.args.get('id')
     group = Room.query.filter_by(id = int(iden)).first()
     group = group.__repr__()
+    print(group[2])
     payload = {'room' : str(group[0]),
                'text' : group[1]
                }
