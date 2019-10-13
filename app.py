@@ -19,6 +19,9 @@ class Room(db.Model):
 
 db.create_all()
 adding = Room(username = '', text  = '')
+db.session.add(adding)
+db.session.commit()
+
 #admin = Room(id = 1, username = "mare_quez", text = "fdafsdfadfa")
 #db.session.add(admin)
 #db.session.commit()
@@ -37,9 +40,9 @@ def room():
         adding = Room(username = '', text  = '')
         db.session.add(adding)
         db.session.commit()
-        room_num = adding.__repr__()[0]
-        payload = { 'room' : str(room_num),
-                'text' : Room.query.get(id)[2]
+        entry = adding.__repr__()[0]
+        payload = { 'room' : str(entry[0]),
+                'text' : entry[1]
                 }
         return jsonify(payload)
 
