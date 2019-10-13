@@ -40,9 +40,9 @@ def room():
         adding = Room(username = '', text  = '')
         db.session.add(adding)
         db.session.commit()
-        entry = adding.__repr__()
-        payload = { 'room' : str(entry[0]),
-                'text' : entry[1]
+        entry = adding.id
+        payload = { 'room' : str(entry),
+                'text' : ""
                 }
         return jsonify(payload)
 
@@ -52,9 +52,9 @@ def getText():
     iden = str(request.args.get('id'))
     print(iden)
     group = Room.query.filter_by(id = int(iden)).first()
-    print(str(group))
-    payload = {'room' : str(group[0]),
-               'text' : group[1]
+    #print(str(group))
+    payload = {'room' : str,
+               'text' : group.text
                }
     print(payload['text'])
     return jsonify(payload)
