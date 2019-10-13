@@ -53,7 +53,7 @@ def getText():
     print(iden)
     group = Room.query.filter_by(id = int(iden)).first()
     #print(str(group))
-    payload = {'room' : str,
+    payload = {'room' : iden,
                'text' : group.text
                }
     print(payload['text'])
