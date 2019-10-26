@@ -2,79 +2,72 @@ from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/chairman.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///chairman2.db'
 db = SQLAlchemy(app)
 app.config.update(
     SECRET_KEY = 'public static void main(String[] args)'
 )
-messages = []
-i = 0
 class Room(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=False, nullable=False)
+    iden = db.Column(db.Integer, primary_key=True)
+    #username = db.Column(db.String(80), unique=False, nullable=False)
     text = db.Column(db.String(500), unique=False, nullable=False)
 
     def __repr__(self):
         return "{}".format(self.text)
 
 db.create_all()
-adding = Room(username = '', text  = '')
-db.session.add(adding)
+"""
+#adding = Room(iden = 10, username = 'test', text  = 'fuck this')
+#db.session.add(adding)
+#db.session.commit()
+a = Room.query.filter_by(iden =10).first()
+print(a.text)
+a.text = "fuck this"
 db.session.commit()
-
+b = Room.query.filter_by(iden =10).first()
+print(b.text)
+"""
 
 @app.route('/ROOM', methods = ['GET'])
 def room():
     data = request.get_json()
     if  data != None:
         group = data.get('room',None)
-        person = Room.query.filter_by(id = int(group)).first()
+        person = Room.query.filter_by(iden = int(group)).first()
         db.session.delete(person)
         db.session.commit()
         return "complete"
     else:
-        messages.append("")
-        adding = Room(username = '', text  = 'a')
+        adding = Room(text  = 'test of the system')
         db.session.add(adding)
         db.session.commit()
-        entry = adding.id
-        payload = { 'room' : str(len(messages)-1),
-                'text' : ""
+        entry = adding.iden
+        print(entry)
+        payload = { 'room' : str(entry),
+                'text' : adding.text
                 }
         return jsonify(payload)
-
     
 @app.route("/TEXT", methods = ['GET'])
 def getText():
-    iden = request.args.get('id')
-    payload = {'room' : iden,
-               'text' : messages[int(iden)]
+    user_id = request.args.get('id')
+    print(user_id)
+    text = Room.query.filter_by(iden = int(user_id)).first().text
+    print(text)
+    payload = {'room' : user_id,
+               'text' : text
                }
     return jsonify(payload)
 
 @app.route("/PUSH", methods = ['POST'])
 def putText():
     data = request.get_json()
-    messages[int(data['id'])] = data['message']
-    group = Room.query.filter_by(id=(int(data['id']))).first()
-    #group.text = data['message']
+    test = data['message']
+    user_id=data['id']
+    print(user_id + test)
+    group = Room.query.filter_by(iden = int(user_id)).first()
+    group.text = data['message']
     db.session.commit()
     
     return ""
-#
-#@app.route("/open", methods = ['POST'])
-#def initialize
-
-
-
-
-
-
-
-
-@app.route("/get", methods = ['GET'])
-def test():
-    payload = {'text': "Hello World"}
-    return jsonify(payload)
-
 
